@@ -13,14 +13,12 @@ model = st.sidebar.selectbox("Model", ["gpt-4.1", "gpt-4o", "gpt-o4-mini"], inde
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.3, 0.1)
 max_tokens = st.sidebar.slider("Max Tokens", 100, 1000, 500, 50)
 top_p = st.sidebar.slider("Top P", 0.0, 1.0, 0.9, 0.1)
-show_prompt = st.sidebar.checkbox("Show Full Request", value=True)
 
 # --- Main UI ---
 st.title("🧪 MSHI LLM Playground")
 st.markdown("Enter custom **instructions** and a **prompt** to interact with an OpenAI LLM using the Responses API.")
 
-instructions = st.text_area("🧾 Instructions", height=150, placeholder="e.g. Format a clinical note into SOAP format...")
-input_text = st.text_area("📝 Prompt", height=200, placeholder="e.g. Pt here for f/u on HTN...")
+input_text = st.text_area("📝 Prompt", height=200, placeholder="e.g. Hello! How are you doing?")
 
 if st.button("🧠 Get Response"):
     if not input_text.strip():
@@ -30,7 +28,6 @@ if st.button("🧠 Get Response"):
 
             response = client.responses.create(
                 model=model,
-                instructions=instructions,
                 input=input_text,
                 temperature=temperature,
                 top_p=top_p,
@@ -41,7 +38,3 @@ if st.button("🧠 Get Response"):
 
         st.markdown("### 🧠 Model Response")
         st.markdown(output)
-
-        if show_prompt:
-            st.markdown("### 📦 Full Request Sent")
-            st.code(f"INSTRUCTIONS:\n{instructions.strip()}\n\nINPUT:\n{input_text.strip()}", language="text")
