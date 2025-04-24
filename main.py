@@ -36,6 +36,14 @@ if st.button("🧠 Get Response"):
                     max_completion_tokens=max_tokens,
                 )
                 output = response.choices[0].message.content
+            elif model == "o4-mini":
+                response = client.responses.create(
+                    model=model,
+                    input=input_text,
+                    top_p=top_p,
+                    max_output_tokens=max_tokens,
+                )
+                output = response.output_text
             else:
                 response = client.responses.create(
                     model=model,
