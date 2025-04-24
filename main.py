@@ -5,9 +5,10 @@ import os
 # Set up OpenAI client
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-# --- Sidebar Configuration ---
-st.sidebar.title("🛠️ LLM Configuration")
+# --- Page Configuration ---
 st.set_page_config(page_title="MSHI LLM Playground", page_icon="🤖", layout="wide")
+st.sidebar.title("🛠️ LLM Configuration")
+
 
 model = st.sidebar.selectbox("Model", ["gpt-4.1", "gpt-4o", "gpt-o4-mini"], index=0)
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.3, 0.1)
