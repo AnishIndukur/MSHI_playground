@@ -26,7 +26,7 @@ if st.button("🧠 Get Response"):
     else:
         with st.spinner("Calling the LLM..."):
             if model == "gpt-3.5":
-                response = client.completions.create(
+                response = client.chat.completions.create(
                     model="gpt-3.5-turbo",
                     messages=[
                         {"role": "user", "content": input_text}
