@@ -26,13 +26,24 @@ if st.button("🧠 Get Response"):
     else:
         with st.spinner("Calling the LLM..."):
 
-            response = client.responses.create(
-                model=model,
-                input=input_text,
-                temperature=temperature,
-                top_p=top_p,
-                max_output_tokens=max_tokens,
-            )
+            if model == "gpt-3.5":
+                response = client.completions.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "user", "content": input_text}
+                    ],
+                    temperature=temperature,
+                    top_p=top_p,
+                    max_completion_tokens=max_tokens,
+                )
+            else:
+                response = client.responses.create(
+                    model=model,
+                    input=input_text,
+                    temperature=temperature,
+                    top_p=top_p,
+                    max_output_tokens=max_tokens,
+                )
 
             output = response.output_text
 
