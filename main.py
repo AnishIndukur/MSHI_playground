@@ -55,4 +55,4 @@ if st.button("🧠 Get Response"):
                 output = response.output_text
 
         st.markdown("### 🧠 Model Response")
-        st.markdown(output)
+        st.markdown(output) 
