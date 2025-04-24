@@ -7,6 +7,7 @@ client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # --- Sidebar Configuration ---
 st.sidebar.title("🛠️ LLM Configuration")
+st.config.set_page_config(page_title="", page_icon="🩺", layout="wide")
 
 model = st.sidebar.selectbox("Model", ["gpt-4.1", "gpt-4o", "gpt-o4-mini"], index=0)
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.3, 0.1)
@@ -15,14 +16,14 @@ top_p = st.sidebar.slider("Top P", 0.0, 1.0, 0.9, 0.1)
 show_prompt = st.sidebar.checkbox("Show Prompt", value=True)
 
 # --- Main UI ---
-st.title("🩺 Clinical Note ➜ SOAP Formatter")
-st.markdown("Paste a raw clinical note and click 'Format Note' to see the LLM generate a structured SOAP format.")
+st.title("LLM Playground")
+st.markdown("Paste your prompt below and click 'Get Response' to send to OpenAI.")
 
-note_input = st.text_area("📄 Clinical Note Input", height=200, placeholder="e.g. Pt here for f/u on HTN...")
+note_input = st.text_area("📄 Prompt Input", height=200, placeholder="e.g. Pt here for f/u on HTN...")
 
 if st.button("🧠 Format Note"):
     if not note_input.strip():
-        st.warning("Please enter a clinical note first.")
+        st.warning("Please enter a prompt first.")
     else:
         with st.spinner("Formatting with LLM..."):
 
@@ -53,7 +54,7 @@ if st.button("🧠 Format Note"):
 
             output = response.output_text
 
-        st.markdown("### 🧾 Formatted SOAP Note:")
+        st.markdown("Response:")
         st.code(output)
 
         if show_prompt:
