@@ -9,7 +9,7 @@ st.set_page_config(page_title="MSHI LLM Playground", page_icon="🤖", layout="w
 st.sidebar.title("🛠️ LLM Configuration")
 
 # --- Sidebar Settings ---
-model = st.sidebar.selectbox("Model", ["gpt-3.5", "gpt-4o", "gpt-4.1", "gpt-o4-mini"], index=0)
+model = st.sidebar.selectbox("Model", ["gpt-3.5", "gpt-4o", "gpt-4.1", "o4-mini"], index=0)
 temperature = st.sidebar.slider("Temperature", 0.0, 1.0, 0.3, 0.1)
 max_tokens = st.sidebar.slider("Max Tokens", 100, 1000, 500, 50)
 top_p = st.sidebar.slider("Top P", 0.0, 1.0, 0.9, 0.1)
