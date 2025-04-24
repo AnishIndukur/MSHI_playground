@@ -35,7 +35,7 @@ if st.button("🧠 Get Response"):
                     top_p=top_p,
                     max_completion_tokens=max_tokens,
                 )
-                output = response.choices[0].message["content"]
+                output = response.choices[0].message.content
             else:
                 response = client.responses.create(
                     model=model,
