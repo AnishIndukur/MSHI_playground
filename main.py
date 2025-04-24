@@ -15,7 +15,7 @@ max_tokens = st.sidebar.slider("Max Tokens", 100, 1000, 500, 50)
 top_p = st.sidebar.slider("Top P", 0.0, 1.0, 0.9, 0.1)
 
 # --- Main UI ---
-st.title("🧪 MSHI LLM Playground")
+st.title("🧪 MSHI LLM Playground ")
 st.markdown("Enter custom **prompt** to interact with an OpenAI LLM using the Responses API.")
 
 input_text = st.text_area("📝 Prompt", height=200, placeholder="e.g. Hello! How are you doing?")
