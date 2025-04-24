@@ -25,7 +25,6 @@ if st.button("🧠 Get Response"):
         st.warning("Please enter a prompt.")
     else:
         with st.spinner("Calling the LLM..."):
-
             if model == "gpt-3.5":
                 response = client.completions.create(
                     model="gpt-3.5-turbo",
@@ -36,6 +35,7 @@ if st.button("🧠 Get Response"):
                     top_p=top_p,
                     max_completion_tokens=max_tokens,
                 )
+                output = response.choices[0].message["content"]
             else:
                 response = client.responses.create(
                     model=model,
@@ -44,8 +44,7 @@ if st.button("🧠 Get Response"):
                     top_p=top_p,
                     max_output_tokens=max_tokens,
                 )
-
-            output = response.output_text
+                output = response.output_text
 
         st.markdown("### 🧠 Model Response")
         st.markdown(output)
